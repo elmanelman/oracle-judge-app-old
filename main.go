@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
@@ -185,8 +186,19 @@ func SubmitHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		solution := r.PostForm.Get("solution")
+
+		// ???
+		restricted := []string{"INSERT", "UPDATE", "DELETE", "GRANT", "REVOKE", "CREATE", "DROP", "ALTER", "TRUNCATE", "COMMENT", "RENAME", "MERGE"}
+		for _, word := range restricted {
+			if strings.Contains(strings.ToUpper(solution), word) {
+				ServerError(w, fmt.Errorf("found restricted keyword \"%s\"", word))
+				return
+			}
+		}
+
 		const query = "INSERT INTO SUBMISSION (ID, USER_ACCOUNT_ID, PROBLEM_ID, SOLUTION) VALUES (:1, 1, :2, :3)"
-		_, err = db.Exec(query, submissionID, problemID, r.PostForm.Get("solution"))
+		_, err = db.Exec(query, submissionID, problemID, solution)
 		if err != nil {
 			ServerError(w, err)
 			return
