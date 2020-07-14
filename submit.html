@@ -1,0 +1,13 @@
+{{ define "content" }}
+    <h1>Задача "{{ .Title }}"</h1>
+
+    <h2>Условие:</h2>
+    <p>{{ .Description }}</p>
+
+    <h2>Послать решение:</h2>
+    <form name="submit" method="POST">
+        <textarea name="solution" rows="24" cols="80"></textarea>
+        <br>
+        <button>Отправить</button>
+    </form>
+{{ end }}

@@ -1,0 +1,18 @@
+{{ define "layout" }}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>Система проверки</title>
+    </head>
+    <body>
+        <a href="/problems">Задачи</a>
+        <br>
+        <a href="/submissions">Посылки</a>
+
+        <hr />
+
+        {{ template "content" . }}
+    </body>
+</html>
+{{ end }}

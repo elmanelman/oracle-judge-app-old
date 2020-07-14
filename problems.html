@@ -1,0 +1,18 @@
+{{ define "content" }}
+    <h1>Задачи</h1>
+    <br>
+    <i>Чтобы послать решение, нажмите на название задачи.</i>
+
+    <table border="1">
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+        </tr>
+        {{ range .Problems }}
+            <tr>
+                <td><a href="/problems/{{.ID}}">{{.Title}}</a></td>
+                <td>{{.Description}}</td>
+            </tr>
+        {{ end }}
+    </table>
+{{ end }}

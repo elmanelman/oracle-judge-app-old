@@ -1,0 +1,20 @@
+{{ define "content" }}
+    <h1>Посылки</h1>
+
+    <table border="1">
+        <tr>
+            <th>Номер</th>
+            <th>Задача</th>
+            <th>Статус проверки</th>
+            <th>Комментарий</th>
+        </tr>
+        {{ range .Submissions }}
+            <tr>
+                <td><a href="/submission/{{ .ID }}">{{ .ID }}</a></td>
+                <td><a href="/problems/{{ .ProblemID }}">{{ .ProblemTitle }}</a></td>
+                <td>{{ .StatusTitle }}</td>
+                <td>{{ .CheckerMessage }}</td>
+            </tr>
+        {{ end }}
+    </table>
+{{ end }}

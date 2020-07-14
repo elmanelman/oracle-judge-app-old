@@ -1,0 +1,8 @@
+{{ define "content" }}
+    <h1>Посылка №{{ .ID }}</h1>
+
+    <p>Название задачи: {{ .ProblemTitle }}</p>
+
+    <p>Текст решения:</p>
+    <p><textarea name="solution" rows="24" cols="80" readonly>{{ .Solution }}</textarea></p>
+{{ end }}
